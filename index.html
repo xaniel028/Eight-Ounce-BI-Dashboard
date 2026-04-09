@@ -1,4 +1,4 @@
-<index.html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -120,8 +120,141 @@ th,td{padding:7px 11px;text-align:center}
 .scard.sel{border-color:var(--amb);background:rgba(200,129,58,.08);color:var(--amb)}
 
 svg{display:block;width:100%;overflow:visible}
-@media(max-width:900px){.g4{grid-template-columns:1fr 1fr}.g5{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.sidebar{width:0;overflow:hidden}.main{margin-left:0}.g2{grid-template-columns:1fr}.g3{grid-template-columns:1fr}}
+
+/* ════ TABLET (≤900px) ════ */
+@media(max-width:900px){
+  .g4{grid-template-columns:1fr 1fr}
+  .g5{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:1fr 1fr}
+  .content{padding:16px 18px}
+  .kpi{padding:11px 13px}
+}
+
+/* ════ MOBILE (≤680px) ════ */
+@media(max-width:680px){
+  /* Sidebar: off-canvas slide-in */
+  .sidebar{
+    position:fixed;left:-220px;top:0;bottom:0;z-index:300;
+    width:220px;transition:left .25s ease;box-shadow:none
+  }
+  .sidebar.mob-open{
+    left:0;box-shadow:4px 0 24px rgba(0,0,0,.6)
+  }
+  /* Overlay behind open sidebar */
+  .mob-overlay{
+    display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:299
+  }
+  .mob-overlay.show{display:block}
+
+  /* Main takes full width */
+  .main{margin-left:0}
+
+  /* Topbar: hamburger + compact layout */
+  .topbar{
+    padding:10px 14px;flex-wrap:wrap;gap:6px;position:sticky;top:0;z-index:200
+  }
+  .topbar-inner{display:flex;align-items:center;gap:10px;width:100%}
+  .mob-menu-btn{
+    display:flex !important;align-items:center;justify-content:center;
+    width:36px;height:36px;background:var(--bg3);border:1px solid var(--brd);
+    border-radius:8px;cursor:pointer;font-size:18px;flex-shrink:0;
+    color:var(--txt2);transition:.15s
+  }
+  .mob-menu-btn:hover{background:var(--bg4);color:var(--amb)}
+  .topbar-actions{
+    display:flex;gap:6px;width:100%;overflow-x:auto;padding-bottom:2px
+  }
+  .topbar-actions::-webkit-scrollbar{height:0}
+  .spill{font-size:10px;padding:4px 8px;white-space:nowrap;flex-shrink:0}
+  .ubtn{font-size:10px;padding:5px 10px;white-space:nowrap;flex-shrink:0}
+
+  /* Content */
+  .content{padding:12px 14px}
+
+  /* All grids → single column */
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr !important}
+
+  /* KPI cards: 2 per row on mobile */
+  .g5.kpi-row,.g4.kpi-row,.kpi-grid-mobile{
+    display:grid;grid-template-columns:1fr 1fr !important
+  }
+
+  /* Cards */
+  .card{padding:14px 12px}
+  .card-sm{padding:10px 12px}
+  .ctitle{font-size:13px}
+
+  /* Tables: horizontal scroll */
+  .tbw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tbl{min-width:520px}
+  .tbl th,.tbl td{padding:8px 10px;font-size:11px}
+
+  /* Sliders */
+  .sldr-wrap{padding:8px 0}
+  .sldr-wrap input[type=range]{height:6px}
+
+  /* Page padding */
+  .mb{margin-bottom:12px}
+
+  /* Pills row: scroll horizontally */
+  .pills{overflow-x:auto;flex-wrap:nowrap !important;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+  .pills::-webkit-scrollbar{height:0}
+  .pill{white-space:nowrap;flex-shrink:0}
+
+  /* Topbar save/upload buttons: row */
+  .topbar .flex-row{flex-direction:row !important;flex-wrap:nowrap;gap:6px;overflow-x:auto}
+
+  /* Settings two-column → one */
+  .settings-grid,.g2.mb{grid-template-columns:1fr !important}
+
+  /* KPI font sizes */
+  .kv{font-size:18px !important}
+  .kl{font-size:9px}
+
+  /* SVG charts: ensure they don't overflow */
+  svg{max-width:100%;overflow:hidden}
+
+  /* Chart containers */
+  [style*="height:200px"],[style*="height:210px"],[style*="height:220px"],
+  [style*="height:230px"],[style*="height:240px"],[style*="height:260px"]{
+    height:180px !important
+  }
+
+  /* Price control: stack sidebar + main */
+  [style*="grid-template-columns:330px"]{
+    grid-template-columns:1fr !important
+  }
+
+  /* Sidebar footer upload button */
+  .sfooter{padding:12px 14px}
+  .sfooter label{font-size:11px;padding:7px 10px}
+
+  /* History items: compact */
+  .history-item,.history-row{
+    grid-template-columns:1fr 1fr !important;
+    gap:6px
+  }
+
+  /* Target tracker rings: 2-col on small */
+  .rings-grid{grid-template-columns:1fr 1fr !important}
+
+  /* Topbar title font */
+  .ptitle{font-size:14px}
+  .psub{font-size:9px}
+
+  /* Save/clear button row in sidebar */
+  .sf-btn-row{flex-direction:column !important}
+}
+
+/* ════ VERY SMALL (≤380px) ════ */
+@media(max-width:380px){
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr !important}
+  .g5.kpi-row,.g4.kpi-row{grid-template-columns:1fr !important}
+  .topbar{padding:8px 10px}
+  .content{padding:10px}
+  .kv{font-size:16px !important}
+  .tbl{min-width:440px}
+}
 </style>
 </head>
 <body>
@@ -144,7 +277,13 @@ svg{display:block;width:100%;overflow:visible}
     <div class="ni" data-pg="fc" onclick="nav(this)"><span class="ico">🔭</span>Forecasting</div>
     <div class="ni" data-pg="roi" onclick="nav(this)"><span class="ico">📊</span>ROI Calculator</div>
     <div class="ni" data-pg="ai" onclick="nav(this)"><span class="ico">🤖</span>AI Advisor</div>
-      <div class="nav-sec">System</div>
+      <div class="nav-sec">Operations</div>
+    <div class="ni" data-pg="logger" onclick="nav(this)"><span class="ico">📝</span>Daily Sales Log</div>
+    <div class="ni" data-pg="expenses" onclick="nav(this)"><span class="ico">💸</span>Expense Tracker</div>
+    <div class="ni" data-pg="recipe" onclick="nav(this)"><span class="ico">🧮</span>Recipe Calculator</div>
+    <div class="ni" data-pg="staff" onclick="nav(this)"><span class="ico">👥</span>Staff & Labor</div>
+    <div class="ni" data-pg="alerts" onclick="nav(this)"><span class="ico">🔔</span>Smart Alerts</div>
+    <div class="nav-sec">System</div>
     <div class="ni" data-pg="loyverse" onclick="nav(this)"><span class="ico">🔗</span>Loyverse Sync</div>
     <div class="ni" data-pg="settings" onclick="nav(this)"><span class="ico">⚙️</span>Settings</div>
   </nav>
@@ -157,9 +296,13 @@ svg{display:block;width:100%;overflow:visible}
   </div>
 </aside>
 <div class="main">
+  <div id="mob-overlay" class="mob-overlay" onclick="closeMobSidebar()"></div>
   <div class="topbar">
-    <div><div class="ptitle" id="pt">Executive Summary</div><div class="psub" id="ps">Oct 2024 – Jan 2026 · 241 Operating Days</div></div>
-    <div style="display:flex;align-items:center;gap:10px">
+    <div class="topbar-inner">
+      <button class="mob-menu-btn" id="mob-menu-btn" onclick="toggleMobSidebar()" style="display:none">☰</button>
+      <div style="flex:1"><div class="ptitle" id="pt">Executive Summary</div><div class="psub" id="ps">Oct 2024 – Jan 2026 · 241 Operating Days</div></div>
+    </div>
+    <div class="topbar-actions">
       <div class="spill"><div class="sdot"></div>Live Data</div>
       <label class="ubtn">📁 Upload Excel<input type="file" accept=".xlsx" style="display:none" onchange="handleUp(this)"/></label>
     </div>
@@ -174,6 +317,11 @@ svg{display:block;width:100%;overflow:visible}
     <div id="p-sales" class="page"></div>
     <div id="p-fin" class="page"></div>
     <div id="p-pl" class="page"></div>
+    <div id="p-logger" class="page"></div>
+    <div id="p-expenses" class="page"></div>
+    <div id="p-recipe" class="page"></div>
+    <div id="p-staff" class="page"></div>
+    <div id="p-alerts" class="page"></div>
     <div id="p-prod" class="page"></div>
     <div id="p-price" class="page"></div>
     <div id="p-inv" class="page"></div>
@@ -529,7 +677,7 @@ function sldr(lbl,id,val,mn,mx,step,pre){
 function bdg(txt,cls){return "<span class='bdg "+cls+"'>"+txt+"</span>";}
 
 // ═══════════════════════════════ NAVIGATION ═══════════════════════════
-var PT_MAP={exec:"Executive Summary",data:"Data Overview",sales:"Sales Analytics",fin:"Financial Performance",pl:"P&L Statement",prod:"Product Performance",price:"Pricing Control",inv:"Inventory",tgt:"Daily Targets",fc:"Forecasting",roi:"ROI Calculator",ai:"AI Advisor",loyverse:"Loyverse Integration",settings:"Settings"};
+var PT_MAP={exec:"Executive Summary",data:"Data Overview",sales:"Sales Analytics",fin:"Financial Performance",pl:"P&L Statement",prod:"Product Performance",price:"Pricing Control",inv:"Inventory",tgt:"Daily Targets",fc:"Forecasting",roi:"ROI Calculator",ai:"AI Advisor",logger:"Daily Sales Log",expenses:"Expense Tracker",recipe:"Recipe Calculator",staff:"Staff & Labor",alerts:"Smart Alerts",loyverse:"Loyverse Integration",settings:"Settings"};
 var PS_MAP={exec:"Full business health snapshot",data:"Uploaded Excel structure & completeness",sales:"Revenue trends · growth · moving averages",fin:"P&L · margins · expense breakdown",prod:"Performance · profitability · rankings",price:"Live margin & profit simulation",inv:"Stock levels · alerts · consumption",tgt:"Set goals · track progress",fc:"3–12 month projections",roi:"Investment return scenarios",ai:"AI-generated insights & strategic recommendations",settings:"Appearance · Charts · Currency · Margins & Markup"};
 var BUILT={};
 
@@ -930,7 +1078,7 @@ BUILD.exec=function(){
   var revSeries=[{name:"Revenue",data:M.map(function(m){return m.rev;}),color:"var(--amb)",fill:true,w:2.5},{name:"Target",data:M.map(function(m){return m.tgt;}),color:"rgba(76,175,80,.5)",dash:"5 3",w:1.5}];
   var netSeries=[{name:"Net Profit",data:M.map(function(m){return m.net;}),color:"var(--grn)",fill:true,w:2,dotC:function(v){return v>=0?"var(--grn)":"var(--red)";}}];
 
-  var h="<div class='g5'>"
+  var h="<div class='g5 kpi-row'>"
     +kpi("Total Revenue",fk(tRev),"15 months · "+M.length+" records","var(--amb)")
     +kpi("Net P&L",(tNet>=0?"+":"")+fk(Math.abs(tNet)),pct(tNet/tRev)+" net margin",clr(tNet))
     +kpi("Gross Margin",pct(tGP/tRev),"Avg all months","var(--amb2)")
@@ -981,7 +1129,7 @@ BUILD.data=function(){
     {n:"Daily Operational Expenses",rows:300,cols:5,comp:95,note:"Expense categorization detail"},
     {n:"Weekly Item Inventory",rows:3,cols:8,comp:20,note:"Template — mostly empty"},
   ];
-  var h="<div class='g4'>"
+  var h="<div class='g4 kpi-row'>"
     +kpi("Sheets Detected","37","Full workbook scanned","var(--amb)")
     +kpi("Daily Records","241","Operating day data points","var(--blu)")
     +kpi("Products","19","With cost breakdowns","var(--amb2)")
@@ -1540,7 +1688,7 @@ BUILD.pl=function(){
   var worstMo = rows.reduce(function(a,b){return b.net<a.net?b:a;});
   var avg3net = rows.slice(-3).reduce(function(s,r){return s+r.net;},0)/3;
 
-  var hKpi = "<div style='display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-bottom:16px'>"
+  var hKpi = "<div style='display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-bottom:16px' class='kpi-row'>"
     +kpi("Total Revenue",    fk(T.rev),                            rows.length+" months",      "var(--amb)")
     +kpi("Gross Profit",     fk(T.gp),                             fmtPct(T.gmPct)+" GM",      "var(--grn)")
     +kpi("Operating Profit", fk(T.ebit),                           fmtPct(T.opPct)+" margin",  T.ebit>=0?"var(--grn)":"var(--red)")
@@ -2013,6 +2161,745 @@ BUILD.pl=function(){
 };
 
 
+
+// ═══════════════════════════════════════════════════════════════════════
+// NEW PAGES — Daily Logger, Expense Tracker, Recipe Calc, Staff, Alerts
+// ═══════════════════════════════════════════════════════════════════════
+
+// ── SHARED STORAGE HELPERS ─────────────────────────────────────────────
+function lsGet(k){ try{ return JSON.parse(localStorage.getItem(k)||"null"); }catch(e){return null;} }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+
+// ══════════════════════════════════════════════════════════════════════
+// 1. DAILY SALES LOGGER
+// ══════════════════════════════════════════════════════════════════════
+BUILD.logger=function(){
+  var logs = lsGet("8oz_daily_logs") || [];
+  var cur  = CFG.currency;
+
+  // Helpers
+  window.loggerSave = function(){
+    var date   = document.getElementById("lg-date").value;
+    var rev    = parseFloat(document.getElementById("lg-rev").value)||0;
+    var exp    = parseFloat(document.getElementById("lg-exp").value)||0;
+    var orders = parseInt(document.getElementById("lg-orders").value)||0;
+    var notes  = document.getElementById("lg-notes").value;
+    var target = parseFloat(document.getElementById("lg-target").value)||META.tgt;
+    if(!date){ alert("Please select a date."); return; }
+    var net    = rev - exp;
+    var gp     = rev * 0.55;
+    var mg     = rev > 0 ? gp/rev*100 : 0;
+    var aov    = orders > 0 ? rev/orders : 0;
+    var entry  = {date,rev,exp,net,gp,mg,orders,aov,target,notes};
+    var idx    = logs.findIndex(function(l){return l.date===date;});
+    if(idx>=0){ if(!confirm("Entry for "+date+" exists. Overwrite?")) return; logs[idx]=entry; }
+    else logs.push(entry);
+    logs.sort(function(a,b){return a.date>b.date?1:-1;});
+    lsSet("8oz_daily_logs",logs);
+    BUILT.logger=false; BUILD.logger(); BUILT.logger=true;
+    showBanner("✅ Saved entry for "+date,"var(--grn)");
+  };
+  window.loggerDel = function(date){
+    if(!confirm("Delete entry for "+date+"?")) return;
+    lsSet("8oz_daily_logs", logs.filter(function(l){return l.date!==date;}));
+    BUILT.logger=false; BUILD.logger(); BUILT.logger=true;
+  };
+  window.loggerClear = function(){
+    if(!confirm("Clear all daily log entries?")) return;
+    lsSet("8oz_daily_logs",[]);
+    BUILT.logger=false; BUILD.logger(); BUILT.logger=true;
+  };
+
+  // Stats from log
+  var logsRev = logs.filter(function(l){return l.rev>0;});
+  var totRev  = logsRev.reduce(function(s,l){return s+l.rev;},0);
+  var totNet  = logsRev.reduce(function(s,l){return s+l.net;},0);
+  var avgRev  = logsRev.length>0?totRev/logsRev.length:0;
+  var avgNet  = logsRev.length>0?totNet/logsRev.length:0;
+  var bestDay = logsRev.length>0?logsRev.reduce(function(a,b){return b.rev>a.rev?b:a;}):null;
+  var tgtHit  = logsRev.filter(function(l){return l.rev>=(l.target||META.tgt);}).length;
+
+  var h = "<div style='display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px'>"
+    +kpi("Total Revenue",fk(totRev),logsRev.length+" days logged","var(--amb)")
+    +kpi("Total Net Profit",(totNet>=0?"+":"")+fk(totNet),"across all entries",totNet>=0?"var(--grn)":"var(--red)")
+    +kpi("Avg Daily Revenue",ff(avgRev),"per operating day","var(--amb2)")
+    +kpi("Avg Daily Net",(avgNet>=0?"+":"")+ff(avgNet),"profit/day",avgNet>=0?"var(--grn)":"var(--orn)")
+    +kpi("Target Hit Days",tgtHit+"/"+logsRev.length,tgtHit>0?"days at goal":"no hits yet",tgtHit>0?"var(--grn)":"var(--red)")
+    +"</div>"
+
+  // Input form
+  +"<div class='card mb'><div class='ctitle'>📝 Log Today's Sales</div>"
+  +"<div class='csub'>Quick manual entry — one row per day</div>"
+  +"<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px'>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Date</div>"
+  +"<input id='lg-date' type='date' value='"+new Date().toISOString().slice(0,10)+"' style='width:100%'></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Total Revenue ("+cur+")</div>"
+  +"<input id='lg-rev' type='number' placeholder='0.00' min='0' step='0.25' style='width:100%'></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Total Expenses ("+cur+")</div>"
+  +"<input id='lg-exp' type='number' placeholder='0.00' min='0' step='0.25' style='width:100%'></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Orders / Cups Sold</div>"
+  +"<input id='lg-orders' type='number' placeholder='0' min='0' step='1' style='width:100%'></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Daily Target ("+cur+")</div>"
+  +"<input id='lg-target' type='number' placeholder='"+META.tgt+"' min='0' step='100' style='width:100%' value='"+META.tgt+"'></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Notes</div>"
+  +"<input id='lg-notes' type='text' placeholder='Optional note (event, weather, etc.)' style='width:100%'></div>"
+  +"</div>"
+  +"<div style='margin-top:12px;display:flex;gap:8px'>"
+  +"<button onclick='loggerSave()' style='background:var(--amb);color:var(--bg0);border:none;border-radius:9px;padding:9px 20px;cursor:pointer;font-size:12px;font-weight:700'>💾 Save Entry</button>"
+  +"<button onclick='loggerClear()' style='background:rgba(239,83,80,.12);border:1px solid rgba(239,83,80,.3);color:var(--red);border-radius:9px;padding:9px 16px;cursor:pointer;font-size:12px'>🗑 Clear All</button>"
+  +"</div></div>"
+
+  // Log table
+  +"<div class='card'><div class='ctitle'>📅 Daily Log History</div>"
+  +"<div class='csub'>"+logs.length+" entries · sorted newest first</div>"
+  +(logs.length===0
+    ? "<div style='text-align:center;padding:30px;color:var(--txt3)'>No entries yet. Log your first day above.</div>"
+    : "<div class='tbw'><table class='tbl'><thead><tr>"
+      +"<th style='text-align:left'>Date</th><th>Revenue</th><th>Expenses</th><th>Gross Profit</th><th>Net Profit</th><th>GM%</th><th>Orders</th><th>AOV</th><th>vs Target</th><th>Notes</th><th></th>"
+      +"</tr></thead><tbody>"
+      +logs.slice().reverse().map(function(l,i){
+        var vt=l.rev-(l.target||META.tgt);
+        var mc=l.mg>=50?"var(--grn)":l.mg>=35?"var(--orn)":"var(--red)";
+        return "<tr class='"+(i%2?"ev":"")+"'>"
+          +"<td class='nm' style='font-weight:700'>"+l.date+"</td>"
+          +"<td style='color:var(--amb);font-weight:700'>"+ff(l.rev)+"</td>"
+          +"<td style='color:var(--red)'>"+ff(l.exp)+"</td>"
+          +"<td style='color:var(--grn)'>"+ff(l.gp||l.rev*.55)+"</td>"
+          +"<td style='font-weight:700;color:"+(l.net>=0?"var(--grn)":"var(--red)")+"'>"+(l.net>=0?"+":"")+ff(l.net)+"</td>"
+          +"<td style='color:"+mc+";font-weight:700'>"+(l.mg||0).toFixed(1)+"%</td>"
+          +"<td>"+l.orders+"</td>"
+          +"<td style='color:var(--pur)'>"+ff(l.aov||0)+"</td>"
+          +"<td style='color:"+(vt>=0?"var(--grn)":"var(--red)")+"'>"+(vt>=0?"+":"")+ff(vt)+"</td>"
+          +"<td style='font-size:10px;color:var(--txt3);max-width:120px;text-overflow:ellipsis;overflow:hidden'>"+( l.notes||"—")+"</td>"
+          +"<td><button onclick=\"loggerDel('"+l.date+"')\" style='background:none;border:none;color:var(--txt3);cursor:pointer;font-size:13px;padding:3px 7px' onmouseover=\"this.style.color='var(--red)'\" onmouseout=\"this.style.color='var(--txt3)'\">✕</button></td>"
+          +"</tr>";
+      }).join("")
+    +"</tbody></table></div>")
+  +"</div>"
+  +(bestDay?"<div style='margin-top:12px;padding:12px 14px;background:rgba(76,175,80,.08);border:1px solid rgba(76,175,80,.2);border-radius:var(--r);font-size:12px;color:var(--txt2)'>🏆 Best logged day: <strong style='color:var(--grn)'>"+bestDay.date+"</strong> with <strong style='color:var(--amb)'>"+ff(bestDay.rev)+"</strong> revenue</div>":"");
+
+  document.getElementById("p-logger").innerHTML=h;
+};
+
+// ══════════════════════════════════════════════════════════════════════
+// 2. EXPENSE TRACKER
+// ══════════════════════════════════════════════════════════════════════
+BUILD.expenses=function(){
+  var exps = lsGet("8oz_expenses") || [];
+  var cur  = CFG.currency;
+  var CATS = ["Ingredients","Packaging","Labor","Rent/Booth","Utilities","Marketing","Maintenance","Supplies","Transport","Admin","Other"];
+  var catColors = {Ingredients:"var(--amb)",Packaging:"#AB47BC",Labor:"var(--grn)",Rent:"var(--orn)","Rent/Booth":"var(--orn)",Utilities:"var(--blu)",Marketing:"#EC407A",Maintenance:"var(--orn)",Supplies:"var(--txt2)",Transport:"var(--blu)",Admin:"var(--txt3)",Other:"var(--txt3)"};
+
+  window.expSave = function(){
+    var date   = document.getElementById("ex-date").value;
+    var cat    = document.getElementById("ex-cat").value;
+    var amount = parseFloat(document.getElementById("ex-amt").value)||0;
+    var vendor = document.getElementById("ex-vendor").value;
+    var notes  = document.getElementById("ex-notes").value;
+    if(!date||amount<=0){ alert("Date and amount are required."); return; }
+    var entry = {id:Date.now(),date,cat,amount,vendor,notes};
+    exps.push(entry);
+    exps.sort(function(a,b){return a.date>b.date?1:-1;});
+    lsSet("8oz_expenses",exps);
+    BUILT.expenses=false; BUILD.expenses(); BUILT.expenses=true;
+    showBanner("✅ Expense saved: "+cur+amount+" for "+cat,"var(--grn)");
+  };
+  window.expDel = function(id){
+    if(!confirm("Delete this expense?")) return;
+    lsSet("8oz_expenses", exps.filter(function(e){return e.id!==id;}));
+    BUILT.expenses=false; BUILD.expenses(); BUILT.expenses=true;
+  };
+  window.expClear = function(){
+    if(!confirm("Clear ALL expense records?")) return;
+    lsSet("8oz_expenses",[]);
+    BUILT.expenses=false; BUILD.expenses(); BUILT.expenses=true;
+  };
+
+  // Category totals
+  var catTotals={};
+  CATS.forEach(function(c){catTotals[c]=0;});
+  exps.forEach(function(e){catTotals[e.cat]=(catTotals[e.cat]||0)+e.amount;});
+  var totAll = exps.reduce(function(s,e){return s+e.amount;},0);
+  var this_month = new Date().toISOString().slice(0,7);
+  var mo_exps  = exps.filter(function(e){return e.date.startsWith(this_month);});
+  var totMo    = mo_exps.reduce(function(s,e){return s+e.amount;},0);
+  var topCat   = Object.entries(catTotals).filter(function(e){return e[1]>0;}).sort(function(a,b){return b[1]-a[1];});
+
+  var h = "<div style='display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px'>"
+    +kpi("Total Tracked",fk(totAll),exps.length+" entries","var(--red)")
+    +kpi("This Month",fk(totMo),this_month,"var(--orn)")
+    +kpi("Largest Category",topCat.length>0?topCat[0][0]:"—",topCat.length>0?ff(topCat[0][1]):"no data","var(--amb)")
+    +kpi("Avg Entry",ff(exps.length>0?totAll/exps.length:0),"per expense","var(--blu)")
+    +"</div>"
+
+  // Input form
+  +"<div class='card mb'><div class='ctitle'>💸 Log an Expense</div>"
+  +"<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px'>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Date</div>"
+  +"<input id='ex-date' type='date' value='"+new Date().toISOString().slice(0,10)+"' style='width:100%'></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Category</div>"
+  +"<select id='ex-cat' style='width:100%'>"+CATS.map(function(c){return "<option>"+c+"</option>";}).join("")+"</select></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Amount ("+cur+")</div>"
+  +"<input id='ex-amt' type='number' placeholder='0.00' min='0' step='0.5' style='width:100%'></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Vendor / Supplier</div>"
+  +"<input id='ex-vendor' type='text' placeholder='e.g. Sylver, KapeMart' style='width:100%'></div>"
+  +"<div style='grid-column:span 2'><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Notes</div>"
+  +"<input id='ex-notes' type='text' placeholder='Optional details' style='width:100%'></div>"
+  +"</div>"
+  +"<div style='margin-top:12px;display:flex;gap:8px'>"
+  +"<button onclick='expSave()' style='background:var(--amb);color:var(--bg0);border:none;border-radius:9px;padding:9px 20px;cursor:pointer;font-size:12px;font-weight:700'>💾 Save Expense</button>"
+  +"<button onclick='expClear()' style='background:rgba(239,83,80,.12);border:1px solid rgba(239,83,80,.3);color:var(--red);border-radius:9px;padding:9px 16px;cursor:pointer;font-size:12px'>🗑 Clear All</button>"
+  +"</div></div>"
+
+  // Category breakdown
+  +"<div class='g2 mb'>"
+  +"<div class='card'><div class='ctitle'>📊 By Category (All-Time)</div>"
+  +topCat.map(function(entry){
+    var col=catColors[entry[0]]||"var(--txt2)";
+    var pct=totAll>0?entry[1]/totAll*100:0;
+    return "<div style='margin-bottom:10px'><div style='display:flex;justify-content:space-between;margin-bottom:3px'>"
+      +"<span style='font-size:12px;color:var(--txt)'>"+entry[0]+"</span>"
+      +"<div style='display:flex;gap:8px'><span style='font-size:11px;color:var(--txt2)'>"+pct.toFixed(1)+"%</span>"
+      +"<span style='font-size:12px;font-weight:700;color:"+col+";font-family:Consolas,monospace'>"+ff(entry[1])+"</span></div></div>"
+      +"<div style='height:6px;background:var(--bg3);border-radius:3px'><div style='height:100%;border-radius:3px;background:"+col+";width:"+pct+"%'></div></div></div>";
+  }).join("")
+  +(topCat.length===0?"<div style='text-align:center;padding:20px;color:var(--txt3)'>No data yet</div>":"")
+  +"</div>"
+
+  // This month breakdown
+  +"<div class='card'><div class='ctitle'>📅 This Month ("+this_month+")</div>"
+  +(mo_exps.length===0
+    ? "<div style='text-align:center;padding:20px;color:var(--txt3)'>No expenses logged this month</div>"
+    : (function(){
+        var moCats={};
+        mo_exps.forEach(function(e){moCats[e.cat]=(moCats[e.cat]||0)+e.amount;});
+        return Object.entries(moCats).sort(function(a,b){return b[1]-a[1];}).map(function(entry){
+          var col=catColors[entry[0]]||"var(--txt2)";
+          var pct=totMo>0?entry[1]/totMo*100:0;
+          return "<div style='margin-bottom:10px'><div style='display:flex;justify-content:space-between;margin-bottom:3px'>"
+            +"<span style='font-size:12px;color:var(--txt)'>"+entry[0]+"</span>"
+            +"<span style='font-size:12px;font-weight:700;color:"+col+";font-family:Consolas,monospace'>"+ff(entry[1])+"</span></div>"
+            +"<div style='height:6px;background:var(--bg3);border-radius:3px'><div style='height:100%;border-radius:3px;background:"+col+";width:"+pct+"%'></div></div></div>";
+        }).join("")+"<div style='margin-top:12px;padding:8px;background:var(--bg3);border-radius:8px;display:flex;justify-content:space-between'><span style='font-size:12px;color:var(--txt3)'>Total this month</span><span style='font-size:14px;font-weight:800;color:var(--red);font-family:Consolas,monospace'>"+ff(totMo)+"</span></div>";
+      })())
+  +"</div></div>"
+
+  // All entries table
+  +"<div class='card'><div class='ctitle'>📋 All Expense Entries</div>"
+  +(exps.length===0
+    ? "<div style='text-align:center;padding:30px;color:var(--txt3)'>No expenses logged yet.</div>"
+    : "<div class='tbw'><table class='tbl'><thead><tr>"
+      +"<th style='text-align:left'>Date</th><th style='text-align:left'>Category</th><th>Amount</th><th style='text-align:left'>Vendor</th><th style='text-align:left'>Notes</th><th></th>"
+      +"</tr></thead><tbody>"
+      +exps.slice().reverse().map(function(e,i){
+        var col=catColors[e.cat]||"var(--txt2)";
+        return "<tr class='"+(i%2?"ev":"")+"'>"
+          +"<td class='nm'>"+e.date+"</td>"
+          +"<td><span class='bdg' style='background:"+col.replace("var(--","rgba(").replace(")",",0.15)")+";color:"+col+"'>"+e.cat+"</span></td>"
+          +"<td style='color:var(--red);font-weight:700'>"+ff(e.amount)+"</td>"
+          +"<td style='color:var(--txt2)'>"+( e.vendor||"—")+"</td>"
+          +"<td style='font-size:10px;color:var(--txt3)'>"+( e.notes||"—")+"</td>"
+          +"<td><button onclick='expDel("+e.id+")' style='background:none;border:none;color:var(--txt3);cursor:pointer;font-size:13px' onmouseover=\"this.style.color='var(--red)'\" onmouseout=\"this.style.color='var(--txt3)'\">✕</button></td>"
+          +"</tr>";
+      }).join("")
+    +"</tbody></table></div>")
+  +"</div>";
+
+  document.getElementById("p-expenses").innerHTML=h;
+};
+
+// ══════════════════════════════════════════════════════════════════════
+// 3. RECIPE / DRINK COST CALCULATOR
+// ══════════════════════════════════════════════════════════════════════
+BUILD.recipe=function(){
+  var saved = lsGet("8oz_recipes") || [];
+  var cur   = CFG.currency;
+
+  // Ingredient library sourced from Excel
+  var INGREDIENTS = [
+    {n:"Supreme Blend 80/20 (per g)",   unit:"g",  costPer:0.95,  pkg:"1000g / ₱950"},
+    {n:"Supreme Blend Arabica (per g)",  unit:"g",  costPer:0.85,  pkg:"1000g / ₱850"},
+    {n:"Milklab Full Cream (per ml)",    unit:"ml", costPer:0.0958,pkg:"12L / ₱1,150"},
+    {n:"Oatside Milk (per ml)",          unit:"ml", costPer:0.19,  pkg:"1L / ₱190"},
+    {n:"Condensed Milk (per ml)",        unit:"ml", costPer:0.115, pkg:"1L / ₱115"},
+    {n:"DV Caramel Sauce (per ml)",      unit:"ml", costPer:0.50,  pkg:"2L / ₱1,000"},
+    {n:"DV Chocolate Sauce (per ml)",    unit:"ml", costPer:0.52,  pkg:"2L / ₱1,040"},
+    {n:"DV White Choc Sauce (per ml)",   unit:"ml", costPer:0.45,  pkg:"2L / ₱900"},
+    {n:"DV Salted Caramel (per ml)",     unit:"ml", costPer:0.50,  pkg:"2L / ₱1,000"},
+    {n:"DV Hazelnut Syrup (per ml)",     unit:"ml", costPer:0.614, pkg:"750ml / ₱460"},
+    {n:"DV French Vanilla (per ml)",     unit:"ml", costPer:0.657, pkg:"700ml / ₱460"},
+    {n:"DV Strawberry Syrup (per ml)",   unit:"ml", costPer:0.753, pkg:"750ml / ₱460"},
+    {n:"Ube Syrup (per ml)",             unit:"ml", costPer:0.619, pkg:"428ml / ₱265"},
+    {n:"Matcha Powder (per g)",          unit:"g",  costPer:0.50,  pkg:"varies"},
+    {n:"Ice (per portion)",              unit:"por",costPer:5.0,   pkg:"fixed ₱5"},
+    {n:"12oz Dabba Cup",                 unit:"pc", costPer:3.90,  pkg:"100pc / ₱390"},
+    {n:"16oz Dabba Cup",                 unit:"pc", costPer:4.00,  pkg:"100pc / ₱400"},
+    {n:"8oz Paper Cup w/lid",            unit:"pc", costPer:5.00,  pkg:"100pc / ₱500"},
+    {n:"Thin Straw",                     unit:"pc", costPer:0.90,  pkg:"100pc / ₱90"},
+    {n:"Sticker Label",                  unit:"pc", costPer:1.80,  pkg:"1000pc / ₱1,800"},
+    {n:"Labor (per cup)",                unit:"pc", costPer:5.0,   pkg:"fixed"},
+    {n:"Electricity (per cup)",          unit:"pc", costPer:2.0,   pkg:"fixed"},
+    {n:"Wastage (per cup)",              unit:"pc", costPer:1.0,   pkg:"fixed"},
+    {n:"Caramel Biscoff (per g)",        unit:"g",  costPer:0.80,  pkg:"varies"},
+  ];
+
+  if(!window._recipeRows) window._recipeRows = [];
+
+  window.recipeAddIngredient = function(){
+    var sel  = document.getElementById("rc-ing-sel");
+    var qty  = parseFloat(document.getElementById("rc-ing-qty").value)||0;
+    var idx  = parseInt(sel.value);
+    if(isNaN(idx)||qty<=0){ alert("Select an ingredient and enter quantity."); return; }
+    var ing  = INGREDIENTS[idx];
+    window._recipeRows.push({name:ing.n,unit:ing.unit,costPer:ing.costPer,qty:qty,subtotal:ing.costPer*qty});
+    recipeRecalc();
+  };
+  window.recipeRemoveRow = function(i){
+    window._recipeRows.splice(i,1);
+    recipeRecalc();
+  };
+  window.recipeAddCustom = function(){
+    var name = document.getElementById("rc-cust-name").value||"Custom";
+    var cost = parseFloat(document.getElementById("rc-cust-cost").value)||0;
+    var qty  = parseFloat(document.getElementById("rc-cust-qty").value)||1;
+    if(cost<=0){ alert("Enter a cost per unit."); return; }
+    window._recipeRows.push({name:name,unit:"pc",costPer:cost,qty:qty,subtotal:cost*qty});
+    recipeRecalc();
+  };
+  window.recipeClear = function(){ window._recipeRows=[]; recipeRecalc(); };
+  window.recipeSave  = function(){
+    var name = document.getElementById("rc-name").value||"Unnamed Recipe";
+    var sp   = parseFloat(document.getElementById("rc-sp").value)||0;
+    var totalCost = window._recipeRows.reduce(function(s,r){return s+r.subtotal;},0);
+    var margin = sp>0?(sp-totalCost)/sp*100:0;
+    saved.push({id:Date.now(),name,sp,cost:totalCost,margin,rows:[...window._recipeRows]});
+    lsSet("8oz_recipes",saved);
+    BUILT.recipe=false; BUILD.recipe(); BUILT.recipe=true;
+    showBanner("✅ Recipe '"+name+"' saved","var(--grn)");
+  };
+  window.recipeDelSaved = function(id){
+    if(!confirm("Delete this recipe?")) return;
+    lsSet("8oz_recipes", saved.filter(function(r){return r.id!==id;}));
+    BUILT.recipe=false; BUILD.recipe(); BUILT.recipe=true;
+  };
+
+  function recipeRecalc(){
+    var totalCost = window._recipeRows.reduce(function(s,r){return s+r.subtotal;},0);
+    var sp = parseFloat(document.getElementById("rc-sp")?.value)||0;
+    var margin = sp>0?(sp-totalCost)/sp*100:0;
+    var suggested = totalCost > 0 ? totalCost * (1/(1-0.55)) : 0; // 55% margin target
+    var el = document.getElementById("rc-result");
+    if(!el) return;
+    var rows = window._recipeRows;
+    el.innerHTML = rows.length===0
+      ? "<div style='text-align:center;padding:16px;color:var(--txt3)'>Add ingredients to see the cost breakdown</div>"
+      : "<div class='tbw'><table class='tbl'><thead><tr><th style='text-align:left'>Ingredient</th><th>Qty</th><th>Unit</th><th>Cost/Unit</th><th>Subtotal</th><th></th></tr></thead><tbody>"
+        +rows.map(function(r,i){
+          return "<tr class='"+(i%2?"ev":"")+"'>"
+            +"<td class='nm'>"+r.name+"</td>"
+            +"<td>"+r.qty+"</td><td style='color:var(--txt3)'>"+r.unit+"</td>"
+            +"<td style='color:var(--txt2)'>"+cur+r.costPer.toFixed(2)+"</td>"
+            +"<td style='color:var(--red);font-weight:700'>"+cur+r.subtotal.toFixed(2)+"</td>"
+            +"<td><button onclick='recipeRemoveRow("+i+");recipeRecalc()' style='background:none;border:none;color:var(--txt3);cursor:pointer'>✕</button></td>"
+            +"</tr>";
+        }).join("")+"</tbody></table></div>"
+      +"<div style='display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px'>"
+      +"<div style='background:var(--bg3);border-radius:9px;padding:12px;text-align:center'><div style='font-size:18px;font-weight:900;color:var(--red);font-family:Consolas,monospace'>"+cur+totalCost.toFixed(2)+"</div><div style='font-size:9px;color:var(--txt3);margin-top:3px'>Direct Cost</div></div>"
+      +"<div style='background:var(--bg3);border-radius:9px;padding:12px;text-align:center'><div style='font-size:18px;font-weight:900;color:var(--amb);font-family:Consolas,monospace'>"+cur+suggested.toFixed(2)+"</div><div style='font-size:9px;color:var(--txt3);margin-top:3px'>Suggested Price (55% GM)</div></div>"
+      +"<div style='background:var(--bg3);border-radius:9px;padding:12px;text-align:center'><div style='font-size:18px;font-weight:900;color:"+(margin>=50?"var(--grn)":margin>=35?"var(--orn)":"var(--red)")+";font-family:Consolas,monospace'>"+(sp>0?margin.toFixed(1)+"%":"—")+"</div><div style='font-size:9px;color:var(--txt3);margin-top:3px'>Your Margin at "+cur+sp+"</div></div>"
+      +"<div style='background:var(--bg3);border-radius:9px;padding:12px;text-align:center'><div style='font-size:18px;font-weight:900;color:var(--pur);font-family:Consolas,monospace'>"+cur+(sp-totalCost>0?(sp-totalCost).toFixed(2):"0.00")+"</div><div style='font-size:9px;color:var(--txt3);margin-top:3px'>Contribution/Cup</div></div>"
+      +"</div>";
+  }
+
+  var opts = INGREDIENTS.map(function(ing,i){return "<option value='"+i+"'>"+ing.n+" ("+cur+ing.costPer.toFixed(3)+"/"+ing.unit+") · "+ing.pkg+"</option>";}).join("");
+
+  var h = "<div class='g2 mb'>"
+  // Builder card
+  +"<div class='card'><div class='ctitle'>🧮 Build a Recipe</div>"
+  +"<div class='csub'>Add ingredients to compute exact cost · set your selling price to see margin</div>"
+  +"<div style='margin-top:12px'>"
+  +"<div style='display:flex;gap:8px;margin-bottom:8px'>"
+  +"<div style='flex:1'><div style='font-size:10px;color:var(--txt3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Recipe Name</div>"
+  +"<input id='rc-name' type='text' placeholder='e.g. Iced Americano 16oz' style='width:100%'></div>"
+  +"<div style='width:120px'><div style='font-size:10px;color:var(--txt3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Selling Price ("+cur+")</div>"
+  +"<input id='rc-sp' type='number' placeholder='99' min='0' step='1' style='width:100%' oninput='recipeRecalc()'></div>"
+  +"</div>"
+  +"<div style='height:1px;background:var(--brd);margin:10px 0'></div>"
+  +"<div style='font-size:10px;font-weight:700;color:var(--txt3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em'>Add from Ingredient Library</div>"
+  +"<div style='display:flex;gap:8px;margin-bottom:8px'>"
+  +"<select id='rc-ing-sel' style='flex:1'>"+opts+"</select>"
+  +"<input id='rc-ing-qty' type='number' placeholder='Qty' min='0' step='0.1' style='width:80px'>"
+  +"<button onclick='recipeAddIngredient();recipeRecalc()' style='background:var(--bg3);border:1px solid var(--brd);border-radius:8px;padding:7px 12px;color:var(--amb);cursor:pointer;font-size:12px;font-weight:700;white-space:nowrap'>+ Add</button>"
+  +"</div>"
+  +"<div style='font-size:10px;font-weight:700;color:var(--txt3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em'>Or add custom ingredient</div>"
+  +"<div style='display:flex;gap:8px;margin-bottom:12px'>"
+  +"<input id='rc-cust-name' type='text' placeholder='Name' style='flex:2'>"
+  +"<input id='rc-cust-cost' type='number' placeholder='Cost/unit' step='0.01' style='flex:1'>"
+  +"<input id='rc-cust-qty' type='number' placeholder='Qty' step='0.1' style='width:70px'>"
+  +"<button onclick='recipeAddCustom();recipeRecalc()' style='background:var(--bg3);border:1px solid var(--brd);border-radius:8px;padding:7px 12px;color:var(--txt2);cursor:pointer;font-size:11px;white-space:nowrap'>+ Custom</button>"
+  +"</div>"
+  +"<div style='display:flex;gap:8px'>"
+  +"<button onclick='recipeSave()' style='background:var(--amb);color:var(--bg0);border:none;border-radius:9px;padding:8px 16px;cursor:pointer;font-size:12px;font-weight:700'>💾 Save Recipe</button>"
+  +"<button onclick='recipeClear()' style='background:var(--bg3);border:1px solid var(--brd);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:11px;color:var(--txt2)'>Clear</button>"
+  +"</div></div></div>"
+
+  // Live result panel
+  +"<div class='card'><div class='ctitle'>📊 Live Cost Breakdown</div>"
+  +"<div id='rc-result'><div style='text-align:center;padding:30px;color:var(--txt3)'>Add ingredients to see the cost breakdown</div></div>"
+  +"</div></div>"
+
+  // Saved recipes
+  +"<div class='card'><div class='ctitle'>📚 Saved Recipes</div>"
+  +(saved.length===0
+    ? "<div style='text-align:center;padding:20px;color:var(--txt3)'>No saved recipes yet. Build one above and click Save.</div>"
+    : "<div class='tbw'><table class='tbl'><thead><tr><th style='text-align:left'>Recipe</th><th>Direct Cost</th><th>Selling Price</th><th>Contribution</th><th>Margin %</th><th>Rating</th><th>Ingredients</th><th></th></tr></thead><tbody>"
+      +saved.map(function(r,i){
+        var mg=r.margin; var mCls=mg>=55?"var(--grn)":mg>=45?"var(--amb)":mg>=35?"var(--orn)":"var(--red)";
+        return "<tr class='"+(i%2?"ev":"")+"'>"
+          +"<td class='nm' style='font-weight:700'>"+r.name+"</td>"
+          +"<td style='color:var(--red)'>"+cur+r.cost.toFixed(2)+"</td>"
+          +"<td style='color:var(--amb)'>"+cur+r.sp+"</td>"
+          +"<td style='color:var(--grn);font-weight:700'>"+cur+(r.sp-r.cost).toFixed(2)+"</td>"
+          +"<td style='color:"+mCls+";font-weight:800'>"+mg.toFixed(1)+"%</td>"
+          +"<td>"+bdg(mg>=55?"EXCELLENT":mg>=45?"GOOD":mg>=35?"FAIR":"REVIEW",mg>=55?"bg":mg>=45?"ba":mg>=35?"bo":"br")+"</td>"
+          +"<td style='font-size:10px;color:var(--txt3)'>"+r.rows.length+" ingredients</td>"
+          +"<td><button onclick='recipeDelSaved("+r.id+")' style='background:none;border:none;color:var(--txt3);cursor:pointer;font-size:13px' onmouseover=\"this.style.color='var(--red)'\" onmouseout=\"this.style.color='var(--txt3)'\">✕</button></td>"
+          +"</tr>";
+      }).join("")+"</tbody></table></div>")
+  +"</div>";
+
+  document.getElementById("p-recipe").innerHTML=h;
+  recipeRecalc();
+};
+
+// ══════════════════════════════════════════════════════════════════════
+// 4. STAFF & LABOR
+// ══════════════════════════════════════════════════════════════════════
+BUILD.staff=function(){
+  var shifts = lsGet("8oz_shifts") || [];
+  var staff  = lsGet("8oz_staff")  || ["Xan","Staff 1","Staff 2"];
+  var cur    = CFG.currency;
+
+  window.shiftSave = function(){
+    var date    = document.getElementById("sh-date").value;
+    var name    = document.getElementById("sh-name").value;
+    var role    = document.getElementById("sh-role").value;
+    var hrs     = parseFloat(document.getElementById("sh-hrs").value)||0;
+    var rate    = parseFloat(document.getElementById("sh-rate").value)||0;
+    var notes   = document.getElementById("sh-notes").value;
+    if(!date||!name||hrs<=0){ alert("Date, staff name, and hours are required."); return; }
+    var labor   = hrs * rate;
+    var entry   = {id:Date.now(),date,name,role,hrs,rate,labor,notes};
+    shifts.push(entry);
+    shifts.sort(function(a,b){return a.date>b.date?1:-1;});
+    lsSet("8oz_shifts",shifts);
+    BUILT.staff=false; BUILD.staff(); BUILT.staff=true;
+    showBanner("✅ Shift saved: "+name+" · "+cur+labor.toFixed(0)+" labor","var(--grn)");
+  };
+  window.shiftDel = function(id){
+    if(!confirm("Delete this shift?")) return;
+    lsSet("8oz_shifts", shifts.filter(function(s){return s.id!==id;}));
+    BUILT.staff=false; BUILD.staff(); BUILT.staff=true;
+  };
+  window.shiftClear = function(){
+    if(!confirm("Clear all shift records?")) return;
+    lsSet("8oz_shifts",[]);
+    BUILT.staff=false; BUILD.staff(); BUILT.staff=true;
+  };
+
+  // Stats
+  var totLabor = shifts.reduce(function(s,sh){return s+sh.labor;},0);
+  var totHrs   = shifts.reduce(function(s,sh){return s+sh.hrs;},0);
+  var avgRate  = totHrs>0?totLabor/totHrs:0;
+  var staffMap = {};
+  shifts.forEach(function(sh){
+    if(!staffMap[sh.name]) staffMap[sh.name]={labor:0,hrs:0,shifts:0};
+    staffMap[sh.name].labor+=sh.labor; staffMap[sh.name].hrs+=sh.hrs; staffMap[sh.name].shifts++;
+  });
+  var staffArr = Object.entries(staffMap).sort(function(a,b){return b[1].labor-a[1].labor;});
+
+  var h = "<div style='display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px'>"
+    +kpi("Total Labor Cost",fk(totLabor),shifts.length+" shifts logged","var(--red)")
+    +kpi("Total Hours",totHrs.toFixed(1)+" hrs",staffArr.length+" staff members","var(--orn)")
+    +kpi("Avg Hourly Rate",cur+avgRate.toFixed(0)+"/hr","across all logged shifts","var(--blu)")
+    +kpi("Avg Cost/Shift",cur+(shifts.length>0?totLabor/shifts.length:0).toFixed(0),"per logged shift","var(--txt2)")
+    +"</div>"
+
+  // Shift input form
+  +"<div class='card mb'><div class='ctitle'>👥 Log a Shift</div>"
+  +"<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px'>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Date</div>"
+  +"<input id='sh-date' type='date' value='"+new Date().toISOString().slice(0,10)+"' style='width:100%'></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Staff Name</div>"
+  +"<input id='sh-name' type='text' list='staff-list' placeholder='Staff member' style='width:100%'>"
+  +"<datalist id='staff-list'>"+staff.map(function(s){return "<option value='"+s+"'>";}).join("")+"</datalist></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Role</div>"
+  +"<select id='sh-role' style='width:100%'><option>Barista</option><option>Cashier</option><option>Prep</option><option>Manager</option><option>Owner</option></select></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Hours Worked</div>"
+  +"<input id='sh-hrs' type='number' placeholder='8' min='0' step='0.5' style='width:100%'></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Rate / Hour ("+cur+")</div>"
+  +"<input id='sh-rate' type='number' placeholder='65' min='0' step='5' style='width:100%' value='65'></div>"
+  +"<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>Notes</div>"
+  +"<input id='sh-notes' type='text' placeholder='Optional' style='width:100%'></div>"
+  +"</div>"
+  +"<div style='margin-top:12px;display:flex;gap:8px'>"
+  +"<button onclick='shiftSave()' style='background:var(--amb);color:var(--bg0);border:none;border-radius:9px;padding:9px 20px;cursor:pointer;font-size:12px;font-weight:700'>💾 Log Shift</button>"
+  +"<button onclick='shiftClear()' style='background:rgba(239,83,80,.12);border:1px solid rgba(239,83,80,.3);color:var(--red);border-radius:9px;padding:9px 16px;cursor:pointer;font-size:12px'>🗑 Clear All</button>"
+  +"</div></div>"
+
+  // Staff breakdown
+  +"<div class='g2 mb'>"
+  +"<div class='card'><div class='ctitle'>👤 Per-Staff Summary</div>"
+  +(staffArr.length===0
+    ? "<div style='text-align:center;padding:20px;color:var(--txt3)'>No shifts logged yet</div>"
+    : staffArr.map(function(entry,i){
+        var d=entry[1];
+        var pct=totLabor>0?d.labor/totLabor*100:0;
+        var colors=["var(--amb)","var(--blu)","var(--grn)","var(--pur)","var(--orn)"];
+        var col=colors[i%colors.length];
+        return "<div style='margin-bottom:12px'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:3px'>"
+          +"<div><span style='font-size:13px;font-weight:700;color:var(--txt)'>"+entry[0]+"</span>"
+          +"<span style='font-size:10px;color:var(--txt3);margin-left:8px'>"+d.shifts+" shifts · "+d.hrs.toFixed(1)+"hrs</span></div>"
+          +"<span style='font-size:13px;font-weight:800;color:"+col+";font-family:Consolas,monospace'>"+cur+d.labor.toFixed(0)+"</span></div>"
+          +"<div style='height:6px;background:var(--bg3);border-radius:3px'><div style='height:100%;border-radius:3px;background:"+col+";width:"+pct+"%'></div></div>"
+          +"</div>";
+      }).join(""))
+  +"</div>"
+  +"<div class='card'><div class='ctitle'>📅 Labor Cost vs Revenue Estimate</div>"
+  +"<div style='padding:6px 0'>"
+  +"<div style='font-size:10px;color:var(--txt3);margin-bottom:8px'>Labor cost as % of total revenue (using Excel monthly data)</div>"
+  +MONTHLY_DATA.slice(-6).map(function(m){
+    var laborEst=m.rev*.10; var pct=m.rev>0?laborEst/m.rev*100:0;
+    var col=pct<=12?"var(--grn)":pct<=16?"var(--orn)":"var(--red)";
+    return "<div style='display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--brd2)'>"
+      +"<span style='font-size:11px;color:var(--txt2);width:60px'>"+m.l+"</span>"
+      +"<div style='flex:1;height:6px;background:var(--bg3);border-radius:3px'><div style='height:100%;border-radius:3px;background:"+col+";width:"+pct+"%'></div></div>"
+      +"<span style='font-size:10px;font-weight:700;color:"+col+";font-family:Consolas,monospace;width:50px;text-align:right'>"+pct.toFixed(1)+"%</span>"
+      +"<span style='font-size:10px;color:var(--txt3);font-family:Consolas,monospace'>"+fk(laborEst)+"</span></div>";
+  }).join("")
+  +"</div></div></div>"
+
+  // Shifts log
+  +"<div class='card'><div class='ctitle'>📋 All Logged Shifts</div>"
+  +(shifts.length===0
+    ? "<div style='text-align:center;padding:24px;color:var(--txt3)'>No shifts logged yet.</div>"
+    : "<div class='tbw'><table class='tbl'><thead><tr>"
+      +"<th style='text-align:left'>Date</th><th style='text-align:left'>Staff</th><th style='text-align:left'>Role</th><th>Hours</th><th>Rate/hr</th><th>Labor Cost</th><th style='text-align:left'>Notes</th><th></th>"
+      +"</tr></thead><tbody>"
+      +shifts.slice().reverse().map(function(sh,i){
+        return "<tr class='"+(i%2?"ev":"")+"'>"
+          +"<td class='nm'>"+sh.date+"</td>"
+          +"<td style='font-weight:700;color:var(--txt)'>"+sh.name+"</td>"
+          +"<td style='color:var(--txt2)'>"+sh.role+"</td>"
+          +"<td>"+sh.hrs+"h</td>"
+          +"<td style='color:var(--txt3)'>"+cur+sh.rate+"/h</td>"
+          +"<td style='color:var(--red);font-weight:700'>"+cur+sh.labor.toFixed(0)+"</td>"
+          +"<td style='font-size:10px;color:var(--txt3)'>"+( sh.notes||"—")+"</td>"
+          +"<td><button onclick='shiftDel("+sh.id+")' style='background:none;border:none;color:var(--txt3);cursor:pointer;font-size:13px' onmouseover=\"this.style.color='var(--red)'\" onmouseout=\"this.style.color='var(--txt3)'\">✕</button></td>"
+          +"</tr>";
+      }).join("")+"</tbody></table></div>")
+  +"</div>";
+
+  document.getElementById("p-staff").innerHTML=h;
+};
+
+// ══════════════════════════════════════════════════════════════════════
+// 5. SMART ALERTS
+// ══════════════════════════════════════════════════════════════════════
+BUILD.alerts=function(){
+  var cur   = CFG.currency;
+  var thresholds = lsGet("8oz_alert_cfg") || {
+    revTarget:META.tgt, minMargin:50, minAov:99, maxExpRatio:65,
+    invCritical:5, reorderBuffer:7, maxLossMo:3
+  };
+
+  window.alertSaveThresh = function(){
+    thresholds.revTarget  = parseFloat(document.getElementById("al-rev").value)||META.tgt;
+    thresholds.minMargin  = parseFloat(document.getElementById("al-mg").value)||50;
+    thresholds.minAov     = parseFloat(document.getElementById("al-aov").value)||99;
+    thresholds.maxExpRatio= parseFloat(document.getElementById("al-expr").value)||65;
+    thresholds.invCritical= parseFloat(document.getElementById("al-invc").value)||5;
+    thresholds.reorderBuffer=parseFloat(document.getElementById("al-reob").value)||7;
+    thresholds.maxLossMo  = parseFloat(document.getElementById("al-lossmo").value)||3;
+    lsSet("8oz_alert_cfg",thresholds);
+    BUILT.alerts=false; BUILD.alerts(); BUILT.alerts=true;
+    showBanner("✅ Alert thresholds saved","var(--grn)");
+  };
+
+  // ── EVALUATE ALL ALERTS ──
+  var alerts = [];
+
+  function addAlert(lvl, cat, ico, title, detail, value, action){
+    alerts.push({lvl,cat,ico,title,detail,value,action});
+  }
+
+  // REVENUE ALERTS
+  var last3rev = M.slice(-3).reduce(function(s,m){return s+m.rev;},0)/3;
+  var latestM  = M[M.length-1];
+  var prevM    = M[M.length-2];
+  if(latestM.rev < thresholds.revTarget)
+    addAlert("warn","Revenue","💰","Below Monthly Target",
+      latestM.l+" revenue of "+ff(latestM.rev)+" is "+ff(thresholds.revTarget-latestM.rev)+" below the "+ff(thresholds.revTarget)+" target.",
+      (latestM.rev/thresholds.revTarget*100).toFixed(0)+"%",
+      "Increase daily volume or push higher-priced items");
+  if(latestM.rev < prevM.rev)
+    addAlert("warn","Revenue","📉","Month-on-Month Decline",
+      "Revenue dropped from "+ff(prevM.rev)+" ("+prevM.l+") to "+ff(latestM.rev)+" ("+latestM.l+") — a decline of "+ff(prevM.rev-latestM.rev)+".",
+      "-"+((prevM.rev-latestM.rev)/prevM.rev*100).toFixed(1)+"%",
+      "Investigate what changed — events, competition, pricing");
+  else
+    addAlert("ok","Revenue","📈","Revenue Growing",
+      "Revenue improved from "+ff(prevM.rev)+" to "+ff(latestM.rev)+" month-on-month.",
+      "+"+((latestM.rev-prevM.rev)/prevM.rev*100).toFixed(1)+"%",
+      "Keep up the momentum");
+
+  // PROFIT / MARGIN ALERTS
+  var lossMos  = M.filter(function(m){return m.net<0;}).length;
+  var avgMg    = M.reduce(function(s,m){return s+(m.rev>0?m.net/m.rev*100:0);},0)/M.length;
+  if(lossMos > thresholds.maxLossMo)
+    addAlert("critical","Profitability","🔴","High Loss Month Count",
+      lossMos+" of "+M.length+" months recorded net losses — "+Math.round(lossMos/M.length*100)+"% loss rate.",
+      lossMos+"/"+M.length+" months",
+      "Review fixed cost structure — consider rent renegotiation or volume boost");
+  if(avgMg < thresholds.minMargin)
+    addAlert("warn","Profitability","⚠️","Average Net Margin Below Threshold",
+      "Average net margin of "+avgMg.toFixed(1)+"% is below your "+thresholds.minMargin+"% target.",
+      avgMg.toFixed(1)+"%",
+      "Reduce COGS or increase average selling price");
+
+  // EXPENSE RATIO ALERTS
+  var expRatio = M.slice(-3).map(function(m){return m.rev>0?m.exp/m.rev*100:0;});
+  var avgExpR  = expRatio.reduce(function(s,v){return s+v;},0)/expRatio.length;
+  if(avgExpR > thresholds.maxExpRatio)
+    addAlert("critical","Expenses","🔥","High Expense Ratio",
+      "3-month average expense ratio is "+avgExpR.toFixed(1)+"% of revenue — above the "+thresholds.maxExpRatio+"% threshold.",
+      avgExpR.toFixed(1)+"%",
+      "Audit bulk purchases and timing — avoid large single-month expense spikes");
+  else
+    addAlert("ok","Expenses","✅","Expense Ratio Under Control",
+      "3-month avg expense ratio "+avgExpR.toFixed(1)+"% — within acceptable range.",
+      avgExpR.toFixed(1)+"%","Maintain current cost discipline");
+
+  // BREAK-EVEN ALERTS
+  var beRev    = META.beRev;
+  var mosBelowBE = M.filter(function(m){return m.rev<beRev;}).length;
+  if(mosBelowBE > M.length*.4)
+    addAlert("critical","Break-Even","⚡","Frequent Below-Break-Even Months",
+      mosBelowBE+" of "+M.length+" months fell below the break-even revenue of "+ff(beRev)+".",
+      mosBelowBE+"/"+M.length,
+      "Increase daily cup target or reduce fixed costs below "+ff(META.fix)+"/mo");
+  else
+    addAlert("ok","Break-Even","💚","Break-Even Mostly Achieved",
+      "Only "+mosBelowBE+" month(s) fell below break-even ("+ff(beRev)+"). Solid coverage.",
+      mosBelowBE+"/"+M.length+" months below","Continue current strategy");
+
+  // INVENTORY ALERTS (from INV array)
+  var INV_EDIT = window.INV_EDIT || INV;
+  var critItems = INV_EDIT.filter(function(it){
+    var days = it.mu>0?Math.round(it.stk/(it.mu/26)):999;
+    return days <= thresholds.invCritical;
+  });
+  var reorderItems = INV_EDIT.filter(function(it){
+    var days = it.mu>0?Math.round(it.stk/(it.mu/26)):999;
+    return days > thresholds.invCritical && days <= thresholds.reorderBuffer;
+  });
+  if(critItems.length>0)
+    addAlert("critical","Inventory","📦","Critical Stock — Reorder Immediately",
+      critItems.map(function(it){return it.n+" (≤"+thresholds.invCritical+"d left)";}).join(", ")+".",
+      critItems.length+" items",
+      "Place order today to avoid stockout");
+  if(reorderItems.length>0)
+    addAlert("warn","Inventory","🔔","Low Stock — Reorder Soon",
+      reorderItems.map(function(it){return it.n;}).join(", ")+" need restocking within "+thresholds.reorderBuffer+" days.",
+      reorderItems.length+" items",
+      "Plan order within the next 2–3 days");
+  if(critItems.length===0&&reorderItems.length===0)
+    addAlert("ok","Inventory","📦","Inventory Levels OK",
+      "All tracked ingredients have more than "+thresholds.reorderBuffer+" days of stock remaining.",
+      "All clear","Review weekly");
+
+  // TREND ALERTS
+  var last3 = M.slice(-3);
+  var declining3 = last3[0].rev > last3[1].rev && last3[1].rev > last3[2].rev;
+  if(declining3)
+    addAlert("critical","Trend","📉","3-Month Revenue Decline",
+      "Revenue has declined 3 consecutive months: "+last3.map(function(m){return m.l+" "+fk(m.rev);}).join(" → "),
+      "3 months","Identify root cause — market, competition, or seasonality");
+  else
+    addAlert("ok","Trend","📈","No Extended Revenue Decline",
+      "No 3-consecutive-month revenue decline detected in recent data.",
+      "Stable","Monitor monthly");
+
+  // ── RENDER ──
+  var lvlOrder = {critical:0,warn:1,ok:2};
+  alerts.sort(function(a,b){return lvlOrder[a.lvl]-lvlOrder[b.lvl];});
+
+  var critCount = alerts.filter(function(a){return a.lvl==="critical";}).length;
+  var warnCount = alerts.filter(function(a){return a.lvl==="warn";}).length;
+  var okCount   = alerts.filter(function(a){return a.lvl==="ok";}).length;
+
+  var h = "<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px'>"
+    +"<div style='background:rgba(239,83,80,.1);border:1px solid rgba(239,83,80,.3);border-radius:var(--r2);padding:14px;text-align:center'>"
+    +"<div style='font-size:28px;font-weight:900;color:var(--red);font-family:Consolas,monospace'>"+critCount+"</div>"
+    +"<div style='font-size:11px;color:var(--red);font-weight:700;margin-top:4px'>CRITICAL</div></div>"
+    +"<div style='background:rgba(255,152,0,.1);border:1px solid rgba(255,152,0,.3);border-radius:var(--r2);padding:14px;text-align:center'>"
+    +"<div style='font-size:28px;font-weight:900;color:var(--orn);font-family:Consolas,monospace'>"+warnCount+"</div>"
+    +"<div style='font-size:11px;color:var(--orn);font-weight:700;margin-top:4px'>WARNINGS</div></div>"
+    +"<div style='background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.3);border-radius:var(--r2);padding:14px;text-align:center'>"
+    +"<div style='font-size:28px;font-weight:900;color:var(--grn);font-family:Consolas,monospace'>"+okCount+"</div>"
+    +"<div style='font-size:11px;color:var(--grn);font-weight:700;margin-top:4px'>ALL CLEAR</div></div>"
+    +"</div>"
+
+  // Alert cards
+  +"<div style='display:flex;flex-direction:column;gap:10px;margin-bottom:20px'>"
+  +alerts.map(function(a){
+    var bg  = a.lvl==="critical"?"rgba(239,83,80,.07)":a.lvl==="warn"?"rgba(255,152,0,.07)":"rgba(76,175,80,.06)";
+    var bc  = a.lvl==="critical"?"rgba(239,83,80,.4)":a.lvl==="warn"?"rgba(255,152,0,.35)":"rgba(76,175,80,.3)";
+    var vc  = a.lvl==="critical"?"var(--red)":a.lvl==="warn"?"var(--orn)":"var(--grn)";
+    var lb  = a.lvl==="critical"?"🔴 CRITICAL":a.lvl==="warn"?"🟡 WARNING":"✅ OK";
+    return "<div style='background:"+bg+";border:1px solid "+bc+";border-left:4px solid "+vc+";border-radius:var(--r);padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start'>"
+      +"<div><div style='display:flex;align-items:center;gap:8px;margin-bottom:5px'>"
+      +"<span style='font-size:16px'>"+a.ico+"</span>"
+      +"<span style='font-size:13px;font-weight:700;color:var(--txt)'>"+a.title+"</span>"
+      +"<span class='bdg' style='background:"+bg+";color:"+vc+";border:1px solid "+bc+";font-size:9px'>"+a.cat+"</span>"
+      +"</div>"
+      +"<div style='font-size:12px;color:var(--txt2);margin-bottom:6px'>"+a.detail+"</div>"
+      +"<div style='font-size:11px;color:var(--txt3);font-style:italic'>💡 "+a.action+"</div></div>"
+      +"<div style='text-align:right'>"
+      +"<div style='font-size:12px;font-weight:700;color:"+vc+";font-family:Consolas,monospace;margin-bottom:4px'>"+a.value+"</div>"
+      +"<span class='bdg' style='font-size:9px;font-weight:700;background:"+bg+";color:"+vc+";border:1px solid "+bc+"'>"+lb+"</span>"
+      +"</div></div>";
+  }).join("")
+  +"</div>"
+
+  // Threshold config
+  +"<div class='card'><div class='ctitle'>⚙️ Alert Thresholds</div>"
+  +"<div class='csub'>Customize when alerts trigger</div>"
+  +"<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px'>"
+  +[
+    ["al-rev",    "Monthly Revenue Target ("+cur+")", thresholds.revTarget],
+    ["al-mg",     "Min Net Margin % Warning",          thresholds.minMargin],
+    ["al-aov",    "Min AOV Warning ("+cur+")",          thresholds.minAov],
+    ["al-expr",   "Max Expense Ratio % Warning",        thresholds.maxExpRatio],
+    ["al-invc",   "Inventory Critical (days left)",     thresholds.invCritical],
+    ["al-reob",   "Inventory Reorder Buffer (days)",    thresholds.reorderBuffer],
+    ["al-lossmo", "Max Acceptable Loss Months",         thresholds.maxLossMo],
+  ].map(function(row){
+    return "<div><div style='font-size:10px;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:700'>"+row[1]+"</div>"
+      +"<input id='"+row[0]+"' type='number' value='"+row[2]+"' style='width:100%'></div>";
+  }).join("")
+  +"</div>"
+  +"<div style='margin-top:12px'>"
+  +"<button onclick='alertSaveThresh()' style='background:var(--amb);color:var(--bg0);border:none;border-radius:9px;padding:9px 20px;cursor:pointer;font-size:12px;font-weight:700'>💾 Save Thresholds</button>"
+  +"</div></div>";
+
+  document.getElementById("p-alerts").innerHTML=h;
+};
+
+// Helper: expose monthly data to staff page
+var MONTHLY_DATA = M;
+
+
 BUILD.price=function(){
   var cur=CFG.currency;
 
@@ -2394,6 +3281,30 @@ BUILD.inv=function(){
   document.getElementById("p-inv").innerHTML = hKpi+hAlert+hFilter+hCharts+hTable+hCostTable;
 };
 
+
+// ── DAILY TARGETS STATE ───────────────────────────────────────────────
+var TGT2={d:14000,w:98000,mrev:214175,yr:2570100,c:150,wc:900,hrs:10,days:6,mdays:26,avgP:99,avgC:44.5,mfix:75200};
+
+// ── SLIDER HANDLER (shared by price, fc, roi, tgt pages) ─────────────
+function upSl(id,v,pre){
+  var k=id.replace(/_$/,"");
+  var n=parseFloat(v);
+  if(k==="pr"||k==="cg"||k==="fx"||k==="vol"||k==="days"){window._simCustomised=true;SIM[k]=n;}
+  if(k==="fc_gr")FC.gr=n;
+  if(k==="fc_pi")FC.pi=n;
+  if(k==="fc_cc")FC.cc=n;
+  if(k==="roi_amt")ROISTATE.amt=n;
+  if(k==="roi_rb")ROISTATE.rb=n;
+  document.getElementById("sv_"+id).textContent=(pre?pre:"")+Number(v).toLocaleString();
+  if(["pr","cg","fx","vol","days"].indexOf(k)>=0){BUILT.price=false;BUILD.price();BUILT.price=true;}
+  if(["fc_gr","fc_pi","fc_cc"].indexOf(k)>=0){BUILT.fc=false;BUILD.fc();BUILT.fc=true;}
+  if(k==="roi_amt"||k==="roi_rb"){BUILT.roi=false;BUILD.roi();BUILT.roi=true;}
+  if(k.slice(0,4)==="tgt_"){
+    var tk=k.slice(4);
+    TGT2[tk]=parseFloat(v);
+    BUILT.tgt=false;BUILD.tgt();BUILT.tgt=true;
+  }
+}
 
 BUILD.tgt=function(){
   var last=DDAY[DDAY.length-1];
@@ -3925,6 +4836,42 @@ function getStorageSize() {
     return (total / 1024).toFixed(1) + " KB";
   } catch(e) { return "unknown"; }
 }
+
+// ══════════════════════ MOBILE NAV ═══════════════════════════════════
+function toggleMobSidebar(){
+  var sb  = document.getElementById("sidebar");
+  var ov  = document.getElementById("mob-overlay");
+  var isOpen = sb.classList.contains("mob-open");
+  if(isOpen){ closeMobSidebar(); } else { openMobSidebar(); }
+}
+function openMobSidebar(){
+  document.getElementById("sidebar").classList.add("mob-open");
+  document.getElementById("mob-overlay").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+function closeMobSidebar(){
+  document.getElementById("sidebar").classList.remove("mob-open");
+  document.getElementById("mob-overlay").classList.remove("show");
+  document.body.style.overflow="";
+}
+// Close sidebar when a nav item is clicked on mobile
+(function patchNav(){
+  var orig = window.nav;
+  window.nav = function(el){
+    if(orig) orig(el);
+    if(window.innerWidth <= 680) closeMobSidebar();
+  };
+})();
+// Show/hide hamburger button based on screen size
+function checkMobile(){
+  var btn = document.getElementById("mob-menu-btn");
+  if(!btn) return;
+  btn.style.display = window.innerWidth <= 680 ? "flex" : "none";
+}
+window.addEventListener("resize", checkMobile);
+window.addEventListener("load", checkMobile);
+// Also call immediately
+setTimeout(checkMobile, 50);
 
 // ══════════════════════ INIT ══════════════════════════════════════════
 
